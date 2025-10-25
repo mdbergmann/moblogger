@@ -6,14 +6,14 @@
 
 
 @implementation BaseAppender {
-    NSDateFormatter *dateFormatter;
-    NSString *pattern;
+    //NSDateFormatter *dateFormatter;
+    OBString *pattern;
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        dateFormatter = [self newDateTimeFormatter];
+        //dateFormatter = [self newDateTimeFormatter];
         pattern = @"[d] [[l]] [c] [m] - [M]";
     }
 
@@ -21,20 +21,22 @@
 }
 
 - (void)dealloc {
-    [dateFormatter release];
+	//[dateFormatter release];
 
     [super dealloc];
 }
 
+/*
 - (NSDateFormatter *)newDateTimeFormatter {
     NSDateFormatter *ret = [[NSDateFormatter alloc] init];
     [ret setDateStyle:NSDateFormatterShortStyle];
     [ret setTimeStyle:NSDateFormatterMediumStyle];
     return ret;
 }
+*/
 
-- (NSString *)computePattern:(NSString *)message level:(Level) loggerName:(NSString *)logger functionName:(NSString *)function {
-
+- (OBString *)computePattern:(OBString *)message level:(LoggingLevel)level loggerName:(OBString *)logger functionName:(OBString *)function {
+	return nil;
 }
 
 @end

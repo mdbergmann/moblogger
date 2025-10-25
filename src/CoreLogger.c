@@ -147,7 +147,7 @@ int corelog(const char *message, LoggingLevel aLevel) {
 	}
 	
 	if(message != NULL) {
-		if(aLevel <= logFilterLevel) {
+		if(aLevel >= logFilterLevel) {
 			// add log level
 			char *level = NULL;
 			switch(aLevel) {

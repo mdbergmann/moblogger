@@ -9,7 +9,7 @@
 #import "Logger.h"
 #import "CoreLogger.h"
 
-@implementation CocoLogger
+@implementation MobLogger
 
 /**
  \brief initialize the logger
@@ -20,12 +20,12 @@
  @param[in] fileAppend each time create a new file? YES or NO
  @param[in] consoleLogging specify if additionally the logging should go to the console
 */
-+ (int)initLogger:(NSString *)logPath 
-		logPrefix:(NSString *)aPrefix 
++ (int)initLogger:(OBString *)logPath 
+		logPrefix:(OBString *)aPrefix 
    logFilterLevel:(int)aLevel
 	 appendToFile:(BOOL)fileAppend
 	 logToConsole:(BOOL)consoleLogging {
-	return initLogger([logPath UTF8String], [aPrefix UTF8String], aLevel, (char)fileAppend, (char)consoleLogging);
+	return initLogger([logPath cString], [aPrefix cString], aLevel, (char)fileAppend, (char)consoleLogging);
 }
 
 + (int)closeLogger {
@@ -52,15 +52,15 @@
  
  @param aPrefix
  */
-+ (void)setLogPrefix:(NSString *)aPrefix {
-	setLogPrefix([aPrefix UTF8String]);
++ (void)setLogPrefix:(OBString *)aPrefix {
+	setLogPrefix([aPrefix cString]);
 }
 
 /**
 \brief Get the log prefix
  */
-+ (NSString *)logPrefix {
-	return [NSString stringWithUTF8String:getLogPrefix()];
++ (OBString *)logPrefix {
+	return [OBString stringWithUTF8String:getLogPrefix()];
 }
 
 /**
@@ -70,8 +70,8 @@
  @param aLevel the level of this message
  @returns error status code != 0
  */
-+ (int)log:(NSString *)message level:(int)aLevel {
-	return corelog([message UTF8String], aLevel);
++ (int)log:(OBString *)message level:(int)aLevel {
+	return corelog([message cString], aLevel);
 }
 
 @end
